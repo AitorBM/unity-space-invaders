@@ -34,7 +34,7 @@ public class ControlAlien : MonoBehaviour
 		// Detectar la colisión entre el alien y otros elementos
 
 		// Necesitamos saber contra qué hemos chocado
-		if (coll.gameObject.tag == "disparo") {
+		if (coll.gameObject.tag == "disparoazul") {
 
 			// Sonido de explosión
 			GetComponent<AudioSource> ().Play ();
