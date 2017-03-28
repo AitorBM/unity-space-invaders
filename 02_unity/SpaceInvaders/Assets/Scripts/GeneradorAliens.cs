@@ -22,14 +22,14 @@ public class GeneradorAliens : MonoBehaviour
 	private direccion rumbo = direccion.DER;
 
 	// Posición vertical de la horda (lo iremos restando de la .y de cada alien)
-	private float altura = 0.5f;
+	private float altura = 0.007f;
 
 	// Límites de la pantalla
 	private float limiteIzq;
 	private float limiteDer;
 
 	// Velocidad a la que se desplazan los aliens (medido en u/s)
-	private float velocidad = 5f;
+	private float velocidad = 2f;
 
 	// Use this for initialization
 	void Start ()
@@ -43,6 +43,10 @@ public class GeneradorAliens : MonoBehaviour
 		// Calculamos el límite izquierdo y el derecho de la pantalla (añadimos una unidad a cada lado como margen)
 		limiteIzq = -1.0f * distanciaHorizontal + 1;
 		limiteDer = 1.0f * distanciaHorizontal - 1;
+
+		if (SceneManager.GetActiveScene().name.Equals("Nivel2")){
+			velocidad = 4f;
+		}
 	}
 	
 	// Update is called once per frame
@@ -90,26 +94,29 @@ public class GeneradorAliens : MonoBehaviour
 
 		// Si no quedan aliens, hemos terminado
 		if( numAliens == 0 ) {
-			SceneManager.LoadScene ("Nivel1");
+			if (SceneManager.GetActiveScene().name.Equals("Nivel1")){
+				SceneManager.LoadScene ("Nivel2");
+			}
 		}
 
 		// Si al menos un alien ha tocado el borde, todo el pack cambia de rumbo
 		if (limiteAlcanzado == true) {
-			for (int i = 0; i < FILAS; i++) {
-				for (int j = 0; j < COLUMNAS; j++) {
-
-					// Comprobamos que haya objeto, para cuando nos empiecen a disparar
-					if (aliens [i, j] != null) {
-						aliens[i,j].transform.Translate (Vector2.down * altura);
-					}
-				}
-			}
+			
 
 
 			if (rumbo == direccion.DER) {
 				rumbo = direccion.IZQ;
 			} else {
 				rumbo = direccion.DER;
+			}
+		}
+		for (int i = 0; i < FILAS; i++) {
+			for (int j = 0; j < COLUMNAS; j++) {
+
+				// Comprobamos que haya objeto, para cuando nos empiecen a disparar
+				if (aliens [i, j] != null) {
+					aliens[i,j].transform.Translate (Vector2.down * altura);
+				}
 			}
 		}
 	}

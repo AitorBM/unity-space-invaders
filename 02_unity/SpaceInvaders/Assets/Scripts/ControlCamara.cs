@@ -21,6 +21,16 @@ public class ControlCamara : MonoBehaviour
 	{
 		// Tecla: Izquierda
 		if (Input.GetKey (KeyCode.LeftArrow)) {
+			transform.Translate (Vector2.left * Time.deltaTime);
+		}
+
+		// Tecla: Derecha
+		if (Input.GetKey (KeyCode.RightArrow)) {
+			transform.Translate (Vector2.right * Time.deltaTime);
+		}
+		/*
+		// Tecla: Izquierda
+		if (Input.GetKey (KeyCode.LeftArrow)) {
 			alien.transform.Translate (Vector2.left * velocidad * Time.deltaTime);
 		}
 
@@ -28,5 +38,6 @@ public class ControlCamara : MonoBehaviour
 		if (Input.GetKey (KeyCode.RightArrow)) {
 			alien.transform.Translate (Vector2.right * velocidad * Time.deltaTime);
 		}
+		*/
 	}
 }
