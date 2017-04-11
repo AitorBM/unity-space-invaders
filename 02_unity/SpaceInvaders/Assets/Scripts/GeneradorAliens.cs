@@ -91,6 +91,10 @@ public class GeneradorAliens : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+		if (Input.GetKey ("m")) {
+			
+		}
+
 		// Contador para saber si hemos terminado
 		int numAliens = 0;
 
@@ -164,7 +168,7 @@ public class GeneradorAliens : MonoBehaviour
                     break;
 
                 case "Nivel3Multi":
-                    SceneManager.LoadScene("Victoria");
+					SceneManager.LoadScene("Nivel4Multi");
                     break;
 
                 case "Nivel4Multi":
@@ -172,7 +176,7 @@ public class GeneradorAliens : MonoBehaviour
                     break;
 
                 case "NivelFinalMulti":
-                    SceneManager.LoadScene("Victoria");
+                    SceneManager.LoadScene("VictoriaMulti");
                     break;
 
                 default:

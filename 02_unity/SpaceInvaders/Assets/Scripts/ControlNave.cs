@@ -53,7 +53,7 @@ public class ControlNave : MonoBehaviour
 
 		// Disparo
 
-		if (Input.GetKeyDown (KeyCode.DownArrow)) {
+		if (Input.GetKeyDown (KeyCode.UpArrow)) {
 			disparar ();
 		}
 	}

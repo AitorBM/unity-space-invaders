@@ -51,7 +51,23 @@ public class ControlAlien : MonoBehaviour
 
 		} else if (coll.gameObject.tag == "nave") {
             Destroy(marcador);
-			SceneManager.LoadScene ("GameOver");
+			if(SceneManager.GetActiveScene().name.Equals("Nivel1") ||
+				SceneManager.GetActiveScene().name.Equals("Nivel2") ||
+				SceneManager.GetActiveScene().name.Equals("Nivel3") ||
+				SceneManager.GetActiveScene().name.Equals("Nivel4") ||
+				SceneManager.GetActiveScene().name.Equals("NivelFinal"))
+			{
+				SceneManager.LoadScene ("GameOver");
+			}
+
+			if(SceneManager.GetActiveScene().name.Equals("Nivel1Multi") ||
+				SceneManager.GetActiveScene().name.Equals("Nivel2Multi") ||
+				SceneManager.GetActiveScene().name.Equals("Nivel3Multi") ||
+				SceneManager.GetActiveScene().name.Equals("Nivel4Multi") ||
+				SceneManager.GetActiveScene().name.Equals("NivelFinalMulti"))
+			{
+				SceneManager.LoadScene ("GameOverMulti");
+			}
 		}
 	}
 }
