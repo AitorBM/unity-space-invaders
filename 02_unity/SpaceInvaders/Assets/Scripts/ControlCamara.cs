@@ -4,29 +4,35 @@ using System.Collections;
 public class ControlCamara : MonoBehaviour
 {
 	// Referencia al objeto en la escena
-	private GameObject alien;
+	//private GameObject alien;
 
 	// Velocidad a la que se desplaza el alien
-	private float velocidad = 20f;
+	private float velocidad = 5f;
 
 	// Use this for initialization
 	void Start ()
 	{
 		// Conectamos con la instancia que hemos creado en el editor
-		alien = GameObject.Find ("Alien1");
-	}
+		//alien = GameObject.Find ("Alien1");
+        // Calculamos la anchura visible de la cámara en pantalla
+        float distanciaHorizontal = Camera.main.orthographicSize * Screen.width / Screen.height;
+
+        transform.localScale = new Vector2(distanciaHorizontal,distanciaHorizontal);
+
+
+    }
 	
 	// Update is called once per frame
 	void Update ()
 	{
 		// Tecla: Izquierda
 		if (Input.GetKey (KeyCode.LeftArrow)) {
-			transform.Translate (Vector2.left * Time.deltaTime);
+			transform.Translate (Vector2.left * Time.deltaTime * velocidad);
 		}
 
 		// Tecla: Derecha
 		if (Input.GetKey (KeyCode.RightArrow)) {
-			transform.Translate (Vector2.right * Time.deltaTime);
+			transform.Translate (Vector2.right * Time.deltaTime * velocidad);
 		}
 		/*
 		// Tecla: Izquierda
