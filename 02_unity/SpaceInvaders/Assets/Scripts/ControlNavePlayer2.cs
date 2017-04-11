@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ControlNave : MonoBehaviour
+public class ControlNavePlayer2 : MonoBehaviour
 {
 
 	// Velocidad a la que se desplaza la nave (medido en u/s)
@@ -30,7 +30,7 @@ public class ControlNave : MonoBehaviour
 		float limiteDer = 1.0f * distanciaHorizontal;
 
 		// Tecla: Izquierda
-		if (Input.GetKey (KeyCode.LeftArrow)) {
+		if (Input.GetKey ("a")) {
 
 			// Nos movemos a la izquierda hasta llegar al límite para entrar por el otro lado
 			if (transform.position.x > limiteIzq) {
@@ -41,7 +41,7 @@ public class ControlNave : MonoBehaviour
 		}
 
 		// Tecla: Derecha
-		if (Input.GetKey (KeyCode.RightArrow)) {
+		if (Input.GetKey ("d")) {
 
 			// Nos movemos a la derecha hasta llegar al límite para entrar por el otro lado
 			if (transform.position.x < limiteDer) {
@@ -52,7 +52,7 @@ public class ControlNave : MonoBehaviour
 		}
 
 		// Disparo
-		if (Input.GetKeyDown (KeyCode.UpArrow)) {
+		if (Input.GetKeyDown ("w")) {
 			disparar ();
 		}
 	}

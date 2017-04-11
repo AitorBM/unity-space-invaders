@@ -24,4 +24,9 @@ public class Menu : MonoBehaviour {
     {
         Application.Quit();
     }
+
+    public void multi()
+    {
+        SceneManager.LoadScene("Nivel1Multi");
+    }
 }

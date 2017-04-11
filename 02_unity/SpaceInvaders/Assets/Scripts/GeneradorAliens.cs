@@ -63,6 +63,26 @@ public class GeneradorAliens : MonoBehaviour
                 velocidad = 7f;
                 break;
 
+            case "Nivel1Multi":
+                velocidad = 2f;
+                break;
+
+            case "Nivel2Multi":
+                velocidad = 4f;
+                break;
+
+            case "Nivel3Multi":
+                velocidad = 5f;
+                break;
+
+            case "Nivel4Multi":
+                velocidad = 6f;
+                break;
+
+            case "NivelFinalMulti":
+                velocidad = 7f;
+                break;
+
             default:
                 break;
         }
@@ -132,6 +152,26 @@ public class GeneradorAliens : MonoBehaviour
                     break;
 
                 case "NivelFinal":
+                    SceneManager.LoadScene("Victoria");
+                    break;
+
+                case "Nivel1Multi":
+                    SceneManager.LoadScene("Nivel2Multi");
+                    break;
+
+                case "Nivel2Multi":
+                    SceneManager.LoadScene("Nivel3Multi");
+                    break;
+
+                case "Nivel3Multi":
+                    SceneManager.LoadScene("Victoria");
+                    break;
+
+                case "Nivel4Multi":
+                    SceneManager.LoadScene("NivelFinalMulti");
+                    break;
+
+                case "NivelFinalMulti":
                     SceneManager.LoadScene("Victoria");
                     break;
 
