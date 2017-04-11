@@ -5,19 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour {
 
-    public string accion;
-
 	// Use this for initialization
 	void Start () {
-        /*
-        if (accion == "empezar")
-        {
-            empezar();
-        } else
-        {
-            salir();
-        }
-        */
+
 	}
 	
 	// Update is called once per frame

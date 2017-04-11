@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class ControlCamara : MonoBehaviour
 {
@@ -14,36 +15,39 @@ public class ControlCamara : MonoBehaviour
 	{
 		// Conectamos con la instancia que hemos creado en el editor
 		//alien = GameObject.Find ("Alien1");
+
         // Calculamos la anchura visible de la cámara en pantalla
-        float distanciaHorizontal = Camera.main.orthographicSize * Screen.width / Screen.height;
+        //float distanciaHorizontal = Camera.main.orthographicSize * Screen.width / Screen.height;
 
-        transform.localScale = new Vector2(distanciaHorizontal,distanciaHorizontal);
-
-
+        //Reescalo la imágen unsando la anchura visible
+        transform.localScale = new Vector2(Camera.main.pixelWidth/10, Camera.main.pixelHeight/10);
+        
     }
 	
 	// Update is called once per frame
 	void Update ()
 	{
-		// Tecla: Izquierda
-		if (Input.GetKey (KeyCode.LeftArrow)) {
-			transform.Translate (Vector2.left * Time.deltaTime * velocidad);
-		}
+        if (Time.deltaTime != 0)
+        {
+            for (int i = 0; i < Camera.main.pixelHeight/2; i++)
+            {
+                transform.Translate(new Vector2(0, -0.0001f));
+            }
+        }
 
-		// Tecla: Derecha
-		if (Input.GetKey (KeyCode.RightArrow)) {
-			transform.Translate (Vector2.right * Time.deltaTime * velocidad);
-		}
-		/*
-		// Tecla: Izquierda
-		if (Input.GetKey (KeyCode.LeftArrow)) {
-			alien.transform.Translate (Vector2.left * velocidad * Time.deltaTime);
-		}
+        if (!SceneManager.GetActiveScene().name.Equals("Menu") && !SceneManager.GetActiveScene().name.Equals("GameOver"))
+        {
+            // Tecla: Izquierda
+            if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                transform.Translate(Vector2.left * Time.deltaTime * velocidad);
+            }
 
-		// Tecla: Derecha
-		if (Input.GetKey (KeyCode.RightArrow)) {
-			alien.transform.Translate (Vector2.right * velocidad * Time.deltaTime);
-		}
-		*/
+            // Tecla: Derecha
+            if (Input.GetKey(KeyCode.RightArrow))
+            {
+                transform.Translate(Vector2.right * Time.deltaTime * velocidad);
+            }
+        }
 	}
 }

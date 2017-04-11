@@ -13,8 +13,13 @@ public class ControlMarcador : MonoBehaviour
 
 	private Text t;
 
-	// Use this for initialization
-	void Start ()
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
+    // Use this for initialization
+    void Start ()
 	{
 		// Localizamos el componente del UI
 		t = puntuacion.GetComponent<Text> ();

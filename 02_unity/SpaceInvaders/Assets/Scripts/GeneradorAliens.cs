@@ -7,9 +7,10 @@ public class GeneradorAliens : MonoBehaviour
 
 	// Publicamos la variable para conectarla desde el editor
 	public Rigidbody2D prefabAlien1;
+    public Rigidbody2D prefabAlien2;
 
-	// Referencia para guardar una matriz de objetos
-	private Rigidbody2D[,] aliens;
+    // Referencia para guardar una matriz de objetos
+    private Rigidbody2D[,] aliens;
 
 	// Tamaño de la invasión alienígena
 	private const int FILAS = 4;
@@ -44,9 +45,27 @@ public class GeneradorAliens : MonoBehaviour
 		limiteIzq = -1.0f * distanciaHorizontal + 1;
 		limiteDer = 1.0f * distanciaHorizontal - 1;
 
-		if (SceneManager.GetActiveScene().name.Equals("Nivel2")){
-			velocidad = 4f;
-		}
+        switch (SceneManager.GetActiveScene().name)
+        {
+            case "Nivel2":
+                velocidad = 4f;
+                break;
+
+            case "Nivel3":
+                velocidad = 5f;
+                break;
+
+            case "Nivel4":
+                velocidad = 6f;
+                break;
+
+            case "NivelFinal":
+                velocidad = 7f;
+                break;
+
+            default:
+                break;
+        }
 	}
 	
 	// Update is called once per frame
@@ -94,9 +113,31 @@ public class GeneradorAliens : MonoBehaviour
 
 		// Si no quedan aliens, hemos terminado
 		if( numAliens == 0 ) {
-			if (SceneManager.GetActiveScene().name.Equals("Nivel1")){
-				SceneManager.LoadScene ("Nivel2");
-			}
+            switch (SceneManager.GetActiveScene().name)
+            {
+                case "Nivel1":
+                    SceneManager.LoadScene("Nivel2");
+                    break;
+
+                case "Nivel2":
+                    SceneManager.LoadScene("Nivel3");
+                    break;
+
+                case "Nivel3":
+                    SceneManager.LoadScene("Nivel4");
+                    break;
+
+                case "Nivel4":
+                    SceneManager.LoadScene("NivelFinal");
+                    break;
+
+                case "NivelFinal":
+                    SceneManager.LoadScene("Victoria");
+                    break;
+
+                default:
+                    break;
+            }
 		}
 
 		// Si al menos un alien ha tocado el borde, todo el pack cambia de rumbo
@@ -114,7 +155,7 @@ public class GeneradorAliens : MonoBehaviour
 			for (int j = 0; j < COLUMNAS; j++) {
 
 				// Comprobamos que haya objeto, para cuando nos empiecen a disparar
-				if (aliens [i, j] != null) {
+				if (aliens [i, j] != null && Time.timeScale != 0) {
 					aliens[i,j].transform.Translate (Vector2.down * altura);
 				}
 			}
@@ -143,8 +184,17 @@ public class GeneradorAliens : MonoBehaviour
 				// Posición de cada alien
 				Vector2 posicion = new Vector2 (origen.x + (espacioH * j), origen.y + (espacioV * i));
 
-				// Instanciamos el objeto partiendo del prefab
-				Rigidbody2D alien = (Rigidbody2D)Instantiate (prefabAlien1, posicion, transform.rotation);
+                Rigidbody2D alien;
+
+                if (i % 2 == 0 && j % 2 ==0)
+                {
+                    // Instanciamos el objeto partiendo del prefab
+                    alien = (Rigidbody2D)Instantiate(prefabAlien1, posicion, transform.rotation);
+                }
+                else{
+                    // Instanciamos el objeto partiendo del prefab
+                    alien = (Rigidbody2D)Instantiate(prefabAlien2, posicion, transform.rotation);
+                }
 
 				// Guardamos el alien en el array
 				aliens [i, j] = alien;

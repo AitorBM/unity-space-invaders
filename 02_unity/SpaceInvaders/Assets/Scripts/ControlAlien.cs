@@ -50,6 +50,7 @@ public class ControlAlien : MonoBehaviour
 			Destroy (gameObject);
 
 		} else if (coll.gameObject.tag == "nave") {
+            Destroy(marcador);
 			SceneManager.LoadScene ("GameOver");
 		}
 	}
